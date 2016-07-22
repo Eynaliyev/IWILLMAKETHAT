@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-
-  root 'pages#index'
-  get '/home' => 'pages#home' # override default routes.
-  get '/profile' => 'pages#profile' # override default routes.
+  root 'pages#home'
+  get '/profile/:id' => 'pages#profile', as: 'user' # override default routes.
+  get 'auth/:provider/callback', to: "sessions#create"
+  delete "sign_out", to: "sessions#destroy", as: 'sign_out'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
