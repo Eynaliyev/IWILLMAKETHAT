@@ -47,7 +47,7 @@
 
             </div>
             <div class="col-sm-11">
-              <p class="post-title"><span class="post-owner"><a href="/user/<%= User.find(@p.user_id).name %>"><%= User.find(@p.user_id).name %></a></span> <span class="post-creation">- <%= @p.created_at.to_formatted_s(:short) %></span></p>
+              <p class="post-title"><span class="post-owner"><a href="/profile/<%= @p.user_id %>"><%= User.find(@p.user_id).name %></a></span> <span class="post-creation">- <%= @p.created_at.to_formatted_s(:short) %></span></p>
               <p class="post-content"><%= link_to(@p.title, @p.url) %></p>
             </div>
             
