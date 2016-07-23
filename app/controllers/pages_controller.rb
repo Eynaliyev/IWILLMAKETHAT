@@ -16,6 +16,6 @@ class PagesController < ApplicationController
 
   private
   def set_auth
-  	@auth = session[:omniauth] if session[:omniauth]
+  	auth = session[:omniauth] if session[:omniauth]
   end
 end

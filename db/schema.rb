@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723144349) do
+ActiveRecord::Schema.define(version: 20160723162816) do
 
   create_table "posts", force: :cascade do |t|
     t.text     "title"
@@ -28,8 +28,11 @@ ActiveRecord::Schema.define(version: 20160723144349) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "profile_image"
   end
+
+  add_index "users", ["profile_image"], name: "index_users_on_profile_image", unique: true
 
 end
