@@ -11,4 +11,15 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  private
+  def authenticate_user!
+  	if current_user
+  		return true
+  	else
+  		redirect_to root_path, :notice=> "You need to log in before doing this"
+  	end
+  end
+
+  helper_method :authenticate_user!
+
 end
