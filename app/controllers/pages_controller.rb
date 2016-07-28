@@ -4,8 +4,10 @@ class PagesController < ApplicationController
 
   def home
   	@posts = Post.all
-    @newPost = Post.new
-    @followers_count = current_user.followers.count
+    if user_signed_in?
+      @newPost = Post.new
+      @followers_count = current_user.followers.count
+    end
   end
 
   def profile
@@ -16,9 +18,13 @@ class PagesController < ApplicationController
     else
       redirect_to root_path, :notice=> "User not found"
     end
-  	@posts = Post.all.where("user_id = ?", User.find_by(:id => @id))
-    @newPost = Post.new
-    @followers_count = @user.followers.count
+
+    @posts = Post.all.where("user_id = ?", User.find_by(:id => @id))
+    
+    if user_signed_in?
+      @newPost = Post.new
+      @followers_count = @user.followers.count
+    end
   end
 
   private
