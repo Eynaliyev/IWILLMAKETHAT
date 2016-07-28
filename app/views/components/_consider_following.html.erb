@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h5 style="color: grey; font-size: 125%;">Consider following:</h5>
+    <% for @u in @toFollow do %>
+    <p style="font-weight: bold; opacity: 0.85;" >
+      <%= link_to(@u.name, user_path(@u))%>
+    </p>
+    <% end %>
+  </div>
+</div>

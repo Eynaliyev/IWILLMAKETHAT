@@ -1,0 +1,13 @@
+<div class="panel panel-default description-panel">
+  <h4 class="post-description-header">Desription:</h4>
+  <br>
+  <% if @post.description %>
+    <span class="post-description">
+      <%= @post.description %>
+    </span>
+  <% else %>
+    <span class="post-description">
+      No description exists for this post.
+   </span>
+  <% end %>
+</div>

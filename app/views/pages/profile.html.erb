@@ -2,86 +2,31 @@
 <div class="row">
   <div class="col-xs-3">
     <div class="col-sm-12">
-      <%= image_tag(@profile_image, class: "rounded-img", height: "200px", width: "200px") %>
-    </div>
-    <div class="col-sm-12">
-      <h3 style="font-weight: bold;"><%= User.find_by(:id => params[:id]).name %></h3>
-      <div class="col-sm-6" style="font-size: 80%; opacity: 0.7;">POSTS<br>
-        <h6 style="color: #0084B4; font-size: 200%;"><%= @posts.count %></h6>
+      <%= image_tag(@profile_image, class: "rounded-img", width: "100%") %>
+      <div class="panel panel-default profile-info-panel">
+        <div class="panel-body">
+          <h3><%= User.find_by(:id => params[:id]).name %></h3>
+          <div class="col-sm-6" style="font-size: 80%; opacity: 0.7;">POSTS<br>
+            <h6 style="color: #0084B4; font-size: 200%;"><%= @posts.count %></h6>
+          </div>
+          <div class="col-sm-6" style="font-size: 80%; opacity: 0.7;">FOLLOWERS<br>
+            <h6 style="color: #0084B4; font-size: 200%;"><%= @followers_count %></h6>
+          </div>
+          <%= render '/components/follow_button', :user => @user %>
+          <p>
+            Just a description
+          </p>
+        </div>
       </div>
-      <div class="col-sm-6" style="font-size: 80%; opacity: 0.7;">FOLLOWERS<br>
-        <h6 style="color: #0084B4; font-size: 200%;"><%= @followers_count %></h6>
-      </div>
-      <%= render '/components/follow_button', :user => @user %>
-      <p>
-        Just a description
-      </p>
     </div>
   </div>
   <div class="col-xs-6 profile-posts">
-    <% for @p in @posts %>
-    <div class="panel panel-default post-panel">
-      <div class="panel-body row">
-        <div class="col-sm-1">
-        <%= image_tag(User.find_by(:id => @p.user_id).profile_image, class: "rounded-img", height: "50px", width: "50px") %> <span class="caret"></span></a>
-        </div>
-        <div class="col-sm-11">
-          <p class="post-title">
-            <span class="post-owner">
-              <a href="/profile/<%= @p.user_id %>"><%= User.find(@p.user_id).name %></a>
-            </span> 
-            <span class="post-creation">- 
-              <%= @p.created_at.to_formatted_s(:short) %>
-            </span>
-          </p>
-          <p class="post-content">
-            <%= link_to(@p.title, @p.url) %>
-          </p>
-        </div>
-        <div class="col-sm-12">
-          <p class="post-links">
-            <span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span>
-            <span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span>
-            <span class="glyphicon glyphicon-heart g-links" aria-hidden="true"></span>
-            <span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true"></span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <% end %>
-    <div class="panel panel-default post-panel">
-          <div class="panel-body row">
-            <div class="col-sm-12">
-            <center><img src="/icon.png" class="bottom-icon"></img>
-              <a href="#top"><p class="opacity: .7;">Back to top <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></p></a></center>
-            </div>
-          </div>
-        </div>
-    </div>
-    <div class="col-xs-3">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h5 style="color: grey; font-size: 125%;">Who to follow</h5>
-          <% for @u in @toFollow do %>
-          <p style="font-weight: bold; opacity: 0.85;" >
-            <%= link_to(@u.name, user_path(@u))%>
-            </a>
-          </p>
-          <% end %>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h5 style="color: grey; font-size: 125%;">Trends</h5>
-          <a href="">#Trend #1</a><br>
-          <span style="color: grey;">31k Posts</span><br><br>
-          <a href="">#Trend #2</a><br>
-          <span style="color: grey;">25k Posts</span><br><br>
-          <a href="">#Trend #3</a><br>
-          <span style="color: grey;">16k Posts</span><br><br>
-        </div>
-      </div>
-    </div>
+    <%= render '/components/posts_feed' %>
+    <%= render'/components/back_to_the_top' %>
+  </div>
+  <div class="col-xs-3">
+    <%= render '/components/consider_following' %>
+    <%= render '/components/trends' %>
   </div>
 </div>
 

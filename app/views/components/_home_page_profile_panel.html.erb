@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-footer">
+  	<% if current_user %>
+      <div class="row">
+        <div class="col-sm-2"><%= image_tag(current_user.profile_image, height: "50px", width: "50px", class: "rounded-img home-avatar") %></div>
+        <div class="col-sm-10">
+          <h4 style="text-align: center;"><%= current_user.name %></h4>
+        </div>
+        <div class="col-sm-12" style="margin-top: 10px;">
+          <div class="col-sm-6" style="font-size: 80%; opacity: 0.7;">POSTS<br>
+            <h6 style="color: #0084B4; font-size: 200%;"><%= current_user.posts.count %></h6>
+          </div>
+          <div class="col-sm-6" style="font-size: 80%; opacity: 0.7;">FOLLOWERS<br>
+            <h6 style="color: #0084B4; font-size: 200%;"><%= @followers_count %></h6>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

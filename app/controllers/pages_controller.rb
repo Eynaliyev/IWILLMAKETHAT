@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_action :set_auth
+  before_action :set_to_follow!
 
   def home
   	@posts = Post.all
@@ -17,7 +18,6 @@ class PagesController < ApplicationController
     end
   	@posts = Post.all.where("user_id = ?", User.find_by(:id => @id))
     @newPost = Post.new
-    @toFollow = User.all.last(5)
     @followers_count = @user.followers.count
   end
 

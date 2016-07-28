@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :relationships, only: [:create, :destroy]
   resources :posts
+  
   root 'pages#home'
   get '/profile/:id' => 'pages#profile', as: 'user' # override default routes.
   get 'auth/:provider/callback', to: "sessions#create"
