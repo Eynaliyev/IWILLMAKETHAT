@@ -14,8 +14,7 @@ class TagsController < ApplicationController
         @tags = Tag.order(:title)
         respond_to do |format|
             format.html
-            format.json { render json: @tags.where("title like ?", "%#{params[:q]}%") }
-
+            format.json { render :json => @tags.collect {|tag| {:id => tag.id, :name => tag.title } }}
         end
     end
 

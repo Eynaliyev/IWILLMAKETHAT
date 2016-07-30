@@ -12,6 +12,7 @@
             <br>
             <!-- begin jquery token input collection -->
             <%= f.label :tag_tokens, "Tags"%>
+            <%= f.text_field :tag_tokens, "data-pre" => @newPost.tags.collect {|tag| {:id => tag.id, :name => tag.title } } %>
             <%= f.text_field :tag_tokens, data: {load: @newPost.tags, class: "form-control" } %>
             <!-- end jquery token input collection -->
             <%= f.text_field :url, autofocus: true, placeholder: "URL", class: "form-control" %>
