@@ -1,0 +1,15 @@
+<!-- profile panel that shows on the right-side of the profile page -->
+<h3><%= User.find_by(:id => params[:id]).name %></h3>
+<div class="col-sm-6" style="font-size: 80%; opacity: 0.7;">POSTS<br>
+  <h6 style="color: #0084B4; font-size: 200%;"><%= @posts.count %></h6>
+</div>
+<div class="col-sm-6" style="font-size: 80%; opacity: 0.7;">FOLLOWERS<br>
+  <h6 style="color: #0084B4; font-size: 200%;"><%= @followers_count %></h6>
+</div>
+<%= render '/components/follow_button', :user => @user %>
+<h4>Desription:</h4>
+<br>
+<span>
+  User Description.
+</span>
+<br><br>

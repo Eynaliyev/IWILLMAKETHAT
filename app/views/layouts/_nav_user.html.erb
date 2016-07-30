@@ -34,7 +34,7 @@
         
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag(current_user.profile_image, class: "rounded-img", height: "25px", width: "25px") %>
+            <%= image_tag(current_user.profile_image, class: "rounded-img", height: "33px", width: "33px") %>
           
           <ul class="dropdown-menu">
      <!--   <li><a href="/">Settings </a></li>
@@ -42,6 +42,8 @@
             <li><%= link_to('Log Out', sign_out_path, :method => :delete) %></li>
           </ul>
         </li>
+        <li><span type="button" style="float: right; margin-top: 10px;"><%= link_to("Add Post", "/add_post", class: "btn btn-primary") %></span>
+</li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
-  resources :posts
+  resources :posts  
+  resources :tags, only: [:create, :new, :index, :show, :destroy]
+
   
   root 'pages#home'
+  get '/explore' => 'tags#index'
+  get '/add_post' => 'posts#new'
   get '/profile/:id' => 'pages#profile', as: 'user' # override default routes.
   get 'auth/:provider/callback', to: "sessions#create"
   delete "sign_out", to: "sessions#destroy", as: 'sign_out'

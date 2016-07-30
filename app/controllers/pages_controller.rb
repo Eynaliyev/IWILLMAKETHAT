@@ -1,9 +1,17 @@
 class PagesController < ApplicationController
-  before_action :set_auth
+  before_action :set_auth!
   before_action :set_to_follow!
 
   def home
   	@posts = Post.all
+    if user_signed_in?
+      @newPost = Post.new
+      @followers_count = current_user.followers.count
+    end
+  end
+  
+  def explore
+    @posts = Post.all
     if user_signed_in?
       @newPost = Post.new
       @followers_count = current_user.followers.count
@@ -25,10 +33,5 @@ class PagesController < ApplicationController
       @newPost = Post.new
       @followers_count = @user.followers.count
     end
-  end
-
-  private
-  def set_auth
-  	auth = session[:omniauth] if session[:omniauth]
   end
 end

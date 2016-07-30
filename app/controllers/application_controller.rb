@@ -27,7 +27,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, :notice=> "You need to log in before doing this"
     end
   end
-  helper_method :authenticate_user!
+    helper_method :authenticate_user!
+
 
   private
   def set_to_follow!
@@ -35,4 +36,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :set_to_follow!
 
+  private
+  def set_auth!
+    auth = session[:omniauth] if session[:omniauth]
+  end
+  helper_method :set_auth!
 end

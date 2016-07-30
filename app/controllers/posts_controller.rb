@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     before_action :set_to_follow!
 
     def new 
-        @post = Post.new
+        @newPost = Post.new
     end
     
     def create

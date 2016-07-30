@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
     # helper methods
 	def self.sign_in_from_omniauth(auth)
-		find_by(provider: auth['provider'], uid: auth['uid'], profile_image: auth['info']['image']) || create_user_from_omniauth(auth)
+		find_by(provider: auth['provider'], uid: auth['uid']) || create_user_from_omniauth(auth)
 	end
 
 	def self.create_user_from_omniauth(auth)
@@ -20,14 +20,17 @@ class User < ActiveRecord::Base
 			profile_image: auth['info']['image']
 			)
 	end
+
     # follow another user
 	def follow(other)
 		active_relationships.create(followed_id: other.id)
 	end
+
 	# unfollow a user
 	def unfollow(other)
 		active_relationships.find_by(followed_id: other.id).destroy
-	end  
+	end 
+
 	# is following a user?
 	def following?(other)
 		following.include?(other)

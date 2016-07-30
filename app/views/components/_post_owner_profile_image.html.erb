@@ -1,1 +1,3 @@
- <%= image_tag(User.find_by(:id => @post.user_id).profile_image, class: "rounded-img", height: "50px", width: "50px") %> 
+<!-- poster's profile image - I have a separate component because I need it outside of the panel in my add post and edit post views -->
+
+<%= image_tag(User.find_by(:id => @post.user_id).profile_image, class: "rounded-img", height: "50px", width: "50px") %> 
