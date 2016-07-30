@@ -10,6 +10,10 @@
           <div class="field" style="margin-left: 10px;">
             <%= f.text_field :title, autofocus: true, placeholder: "Title", class: "form-control" %>
             <br>
+            <!-- begin jquery token input collection -->
+            <%= f.label :tag_tokens, "Tags"%>
+            <%= f.text_field :tag_tokens, data: {load: @newPost.tags, class: "form-control" } %>
+            <!-- end jquery token input collection -->
             <%= f.text_field :url, autofocus: true, placeholder: "URL", class: "form-control" %>
             <br>
             <%= f.text_field(:description, autofocus: true, placeholder: "Description", class: "form-control") %>

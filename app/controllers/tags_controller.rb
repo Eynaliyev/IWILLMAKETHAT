@@ -10,6 +10,13 @@ class TagsController < ApplicationController
           @newPost = Post.new
           @followers_count = current_user.followers.count
         end
+        # setting up code for the tokeninput field
+        @tags = Tag.order(:title)
+        respond_to do |format|
+            format.html
+            format.json { render json: @tags.where("title like ?", "%#{params[:q]}%") }
+
+        end
     end
 
     def new
