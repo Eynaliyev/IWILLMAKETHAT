@@ -1,9 +1,10 @@
 class PagesController < ApplicationController
   before_action :set_auth!
   before_action :set_to_follow!
+  before_action :set_new_post!
 
   def home
-  	@posts = Post.all
+    @posts = Post.all
     if user_signed_in?
       @newPost = Post.new
       @followers_count = current_user.followers.count
@@ -18,7 +19,7 @@ class PagesController < ApplicationController
     end
   end
 
-  def profile
+  def profile    
     if (User.find_by(:id => params[:id]))
       @id = params[:id]
       @user = User.find_by(:id => params[:id])
@@ -30,7 +31,6 @@ class PagesController < ApplicationController
     @posts = Post.all.where("user_id = ?", User.find_by(:id => @id))
     
     if user_signed_in?
-      @newPost = Post.new
       @followers_count = @user.followers.count
     end
   end

@@ -8,7 +8,7 @@
       <div class="col-sm-11">
         <%= form_for(@newTag) do |f| %>
           <div class="field" style="margin-left: 10px;">
-            <%= f.text_field :title, autofocus: true, placeholder: "Title", class: "form-control" %>
+            <%= f.text_field :name, autofocus: true, placeholder: "Name", class: "form-control" %>
             <br>
             <span type="button" class="btn btn-submit" style="float: right; margin-top: 3px;"><%= f.submit "Add Post", class: "btn btn-primary" %></span>
           </div>

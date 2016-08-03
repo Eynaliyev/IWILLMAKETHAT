@@ -11,10 +11,11 @@ class TagsController < ApplicationController
           @followers_count = current_user.followers.count
         end
         # setting up code for the tokeninput field
-        @tags = Tag.order(:title)
+        @tags = Tag.where("name like ?", "%#{params[:q]}%")
         respond_to do |format|
             format.html
-            format.json { render :json => @tags.collect {|tag| {:id => tag.id, :name => tag.title } }}
+            format.json { render :json => @tags.map(&:attributes) }
+
         end
     end
 
@@ -35,7 +36,7 @@ class TagsController < ApplicationController
 
     private
     def tag_params # allows certain data to be passed via form.
-        params.require(:tag).permit(:title)
+        params.require(:tag).permit(:name)
     end
     
 end

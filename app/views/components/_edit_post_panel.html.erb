@@ -1,6 +1,6 @@
 <!-- the post form for editing a post -->
 <% if user_signed_in? %>
-  <div class="panel panel-default post-panel">
+  <div class="panel panel-default post-panel" id="myeditpost_">
     <div class="panel-body row">
       <div class="col-sm-1">
       <%= render'/components/post_owner_profile_image' %>
@@ -16,18 +16,23 @@
         </p>
       </div>
       <div class="col-sm-12 edit-post-field">
-        <%= form_for(@post) do |f| %>
-          <%= f.text_field :title, autocomplete: "off", class: "form-control" %>
+        <%= form_for(@post, remote: true) do |f| %>
+          <%= f.text_field :title, autocomplete: "off", class: "form-control post_title" %>
           <br>
-          <%= f.text_field :url, autocomplete: "off", class: "form-control"  %>
+          <%= f.text_field :url, autocomplete: "off", class: "form-control post_url"  %>
           <br>
-          <%= f.text_field :description, autocomplete: "off", class: "form-control"  %>
+            <!-- begin jquery token input collection -->
+            <%= f.label :tag_tokens, "Tags"%>
+
+            <%= f.text_field :tag_tokens, "data-pre" => @post.tags.map(&:attributes).to_json, class: "post_tag_tokens" %>
+            <!-- end jquery token input collection -->
+          </br>
+          <%= f.text_field :description, autocomplete: "off", class: "form-control post_description"  %>
           <br>
-          <%= f.submit "Update", :class => "btn btn-primary" %>
+          <%= f.submit "Update", :class => "btn btn-primary", id: "update", remote: true %>
         <% end %> 
         <br>
-        <span><%= link_to "Delete post", post_path(@post), method: "delete" %></span>
-
+        <span><%= link_to "Delete post", post_path(@post), :confirm => 'Are you sure?', method: "delete" %></span>
       </div>
     </div>
   </div>

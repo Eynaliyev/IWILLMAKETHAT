@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
-  $('#post_tag_tokens').tokenInput('/tags.json')
-    theme: 'facebook'
-    prePopulate: $('#post_tag_tokens').data('load')
+  $('#post_tag_tokens').tokenInput('/tags.json', {
+  crossDomain: false,
+  theme: 'facebook',
+  prePopulate: $('#post_tag_tokens').data('pre')
+  });

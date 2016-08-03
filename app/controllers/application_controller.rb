@@ -27,8 +27,15 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, :notice=> "You need to log in before doing this"
     end
   end
-    helper_method :authenticate_user!
+  helper_method :authenticate_user!
 
+  private
+  def set_new_post!
+    if user_signed_in?
+      @newPost = Post.new
+    end
+  end
+  helper_method :set_new_post!
 
   private
   def set_to_follow!

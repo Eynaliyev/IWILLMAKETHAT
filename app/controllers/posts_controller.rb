@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
-    
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_to_follow!
+    before_action :set_new_post!
 
     def new 
-        @newPost = Post.new
     end
     
     def create
@@ -13,8 +12,10 @@ class PostsController < ApplicationController
         respond_to do |f|
             if (@post.save) 
                 f.html { redirect_to "", notice: "Post created!" }
+                f.js
             else
                 f.html { redirect_to "", notice: "Error: Post Not Saved." }
+                f.js
             end
         end
     end
@@ -30,22 +31,29 @@ class PostsController < ApplicationController
     
     def update
         @post = current_user.posts.find(params[:id]) 
-
-        if @post.update(post_params)
-            redirect_to @post
-        else
-            render 'edit'
+        respond_to do |format |
+            if @post.update(post_params)
+                format.html { redirect_to :back, notice: "Post was successfully updated" }
+                format.js
+            else
+                format.html { render 'edit' }
+                format.js
+            end
         end
     end
     
     def destroy 
         @post = current_user.posts.find(params[:id]) 
         @post.destroy
-        redirect_to "/" 
-    end    
+        respond_to do |format|
+            format.html { redirect_to root_path, notice: "Post was successfully deleted." }
+            format.js
+        end
+    end  
+      
     private
     def post_params # allows certain data to be passed via form.
-        params.require(:post).permit(:user_id, :title, :url, :description, { :tag_ids => [] })
+        params.require(:post).permit(:user_id, :title, :url, :description, { :tag_tokens => [] })
     end
     
 end

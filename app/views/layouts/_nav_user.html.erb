@@ -42,8 +42,7 @@
             <li><%= link_to('Log Out', sign_out_path, :method => :delete) %></li>
           </ul>
         </li>
-        <li><span type="button" style="float: right; margin-top: 10px;"><%= link_to("Add Post", "/add_post", class: "btn btn-primary") %></span>
-</li>
+        <li><button type="button" style="float: right; margin-top: 10px;" data-toggle="modal" data-target="#mynewpost">Add Post</button></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

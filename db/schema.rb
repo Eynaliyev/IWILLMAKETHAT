@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20160729141519) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "tags", force: :cascade do |t|
-    t.text     "title"
+    t.text     "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
