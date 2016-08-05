@@ -38,6 +38,12 @@ class ApplicationController < ActionController::Base
   helper_method :set_new_post!
 
   private
+  def set_tags!
+    @tags = Tag.all.last(5)
+  end
+  helper_method :set_tags!
+
+  private
   def set_to_follow!
     @toFollow = User.all.last(5)
   end

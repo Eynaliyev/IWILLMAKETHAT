@@ -6,6 +6,11 @@
     <%= render '/components/tags' %>
   </div>
   <div class="col-xs-8 home-feed" id="container_posts">
+    <div class="panel panel-deafult post-panel"> 
+      <div class="panel-body">
+        <h2><%= @tag.name %></h2><br>
+      </div>
+    </div>
     <%= render '/components/posts_feed' %>
     <%= render'/components/back_to_the_top' %>
   </div>

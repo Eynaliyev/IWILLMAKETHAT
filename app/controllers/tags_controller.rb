@@ -2,6 +2,8 @@ class TagsController < ApplicationController
     
     before_action :set_auth!
     before_action :set_to_follow!
+    before_action :set_tags!
+    before_action :set_new_post!
 
 
     def index
@@ -31,6 +33,24 @@ class TagsController < ApplicationController
             else
                 f.html {redirect_to "", notice: "Error: Tag not saved."}
             end
+        end
+    end
+
+    def show
+        #find categorizations for the given tag
+
+        #find posts which are in those categorizations
+        @tag = Tag.find(params[:id])
+        @posts = @tag.posts
+
+
+        if user_signed_in?
+          @newPost = Post.new
+          @followers_count = current_user.followers.count
+        end
+        respond_to do |format|
+          format.html
+          format.js
         end
     end
 

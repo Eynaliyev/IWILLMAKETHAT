@@ -1,7 +1,7 @@
 $("#mynewpost").modal('hide');
-$(".post_title").val('');
-$(".post_url").val('');
-$(".post_description").val('');
+$("#post_title").val('');
+$("#post_url").val('');
+$("#post_description").val('');
 
 $("#container_posts").prepend("<%= j render '/components/post_panel' %>");
 $('#post_<%= @post.id %>').hide().fadeIn(1000);

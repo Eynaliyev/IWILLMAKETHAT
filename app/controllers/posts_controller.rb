@@ -2,6 +2,7 @@ class PostsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_to_follow!
     before_action :set_new_post!
+    before_action :set_tags!
 
     def new 
     end
@@ -11,7 +12,7 @@ class PostsController < ApplicationController
         @post.user_id = current_user.id # assign the post to the user who created it.
         respond_to do |f|
             if (@post.save) 
-                f.html { redirect_to "", notice: "Post created!" }
+                f.html { redirect_to "", notice: "Post created!"}
                 f.js
             else
                 f.html { redirect_to "", notice: "Error: Post Not Saved." }
@@ -53,7 +54,7 @@ class PostsController < ApplicationController
       
     private
     def post_params # allows certain data to be passed via form.
-        params.require(:post).permit(:user_id, :title, :url, :description, { :tag_tokens => [] })
+        params.require(:post).permit(:user_id, :title, :url, :description, { :tag_ids => [] })
     end
     
 end

@@ -1,8 +1,11 @@
 <!-- Tags filter panel - needs to be dynamic -->
-<h5 style="font-size: 125%;">Categories</h5>
-<a href="">#Tag #1</a><br>
+<h5 style="font-size: 125%;">Tags</h5>
+<% for @t in @tags do %>
+<p style="font-weight: bold; opacity: 0.85;" >
+  <%= link_to(@t.name, tag_path(@t))%>
+</p>
 <span style="color: grey;">31k Posts</span><br><br>
-<a href="">#Tag #2</a><br>
-<span style="color: grey;">25k Posts</span><br><br>
-<a href="">#Tag #3</a><br>
-<span style="color: grey;">16k Posts</span><br><br>
+<% end %>
+
+<!-- panel listing suggested users that you could follow - should be adoptable. -->
+

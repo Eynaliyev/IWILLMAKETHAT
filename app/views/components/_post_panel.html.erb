@@ -20,38 +20,40 @@
         <%= link_to(@post.url, @post.url) %>
       </p>
       <% for tag in @post.tags %>
-        <li><%= tag.name %></li>
+        <%= link_to(tag.name, tag_path(tag)) %>
       <% end %>
     </div>
-    <% for tag in @post.tags %>
-      <%= tag.name %>
-    <% end %>
+
 
 
     <div class="col-sm-12">
       <p class="post-links">
         <div class="col-sm-2">
           <span class="glyphicon glyphicon-heart g-links" aria-hidden="true"></span>
-        </div>
-        <div class="col-sm-2">
-          <span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span>
         </div><!--
         <div class="col-sm-2">
-          <span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span>
-        </div>-->
-        <div class="col-sm-2">
-          <span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span>
         </div>
+        <div class="col-sm-2">
+          <span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span>
+        </div>
+        <div class="col-sm-2">
+          <div class="three-dots" aria-gidden="true">
+            <%= link_to "", "#", class: "glyphicon glyphicon-option-horizontal g-links", id: "extra-links", remote: true %>      
+          </div>
+        </div>-->
         <% if user_signed_in? %>
           <% if current_user.id == @post.user_id %>
-            <div class="col-sm-2">
-             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= @post.id %>"> Edit </button>      
-            </div> 
-            <div class="col-sm-2">
-              <span><%= link_to "Delete", post_path(@post), :confirm => 'Are you sure?', method: "delete", remote: true %></span>
-            </div> 
-            <%= render '/components/edit_post_panel_modal' %>
-          <% end %>                  
+            <div class="edit-delete-links">
+              <div class="col-sm-2">
+                <button id="edit-button" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= @post.id %>"> Edit </button>      
+              </div> 
+              <div class="col-sm-2">
+                <span id="delete-button"><%= link_to "Delete", post_path(@post), :confirm => 'Are you sure?', method: "delete", remote: true %></span>
+              </div> 
+              <%= render '/components/edit_post_panel' %>
+            </div>
+          <% end %>
         <% end %>
       </p>
     </div>

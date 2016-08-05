@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   before_action :set_auth!
   before_action :set_to_follow!
+  before_action :set_tags!
   before_action :set_new_post!
 
   def home
@@ -9,6 +10,10 @@ class PagesController < ApplicationController
       @newPost = Post.new
       @followers_count = current_user.followers.count
     end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def explore
@@ -16,6 +21,10 @@ class PagesController < ApplicationController
     if user_signed_in?
       @newPost = Post.new
       @followers_count = current_user.followers.count
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -32,6 +41,10 @@ class PagesController < ApplicationController
     
     if user_signed_in?
       @followers_count = @user.followers.count
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 end
